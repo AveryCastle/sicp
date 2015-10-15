@@ -103,32 +103,31 @@
 )
 
 ;; 연습문제 1.4
-(defn a-plus-abs-b[a b]
+(defn a-plus-abs-b [a b]
   ((if (> b a) + -) a b)
 )
 
 ;; 연습문제 1.5
 (def p p)
 
-(defn testing[x y]
+(defn testing [x y]
   (if (= x 0)
     0
     y))
 
 ;; 1.1.7 연습: 뉴튼 법으로 제곱근 찾기
-(defn average[x y]
+(defn average [x y]
   (/ (+ x y) 2)
 )
 
-(defn improve[guess x]
-  (average guess (/ x guess))
-)
+(defn improve [guess x]
+  (average guess (/ x guess)))
 
-(defn good-enough?[guess x]
+(defn good-enough? [guess x]
   (< (abs (- (square guess) x)) 0.001)
 )
 
-(defn sqrt-iter[guess x]
+(defn sqrt-iter [guess x]
   (if (good-enough? guess x)
     guess
     (sqrt-iter (improve guess x) x)
@@ -146,3 +145,18 @@
 (sqrt (+ (sqrt 2) (sqrt 3)))
 
 (square (sqrt 1000))
+
+;; 연습문제 1.6
+(defn new-if [predicate then-clause else-clause]
+  (cond predicate then-clause
+        :else else-clause))
+
+(new-if (> 2 3) 1 0)
+(new-if (> 4 3) 1 0)
+
+(defn wrong-iter [x y]
+  (new-if (> x y)
+    x
+    (wrong-iter (+ x 1) y)))
+
+(wrong-iter 1 3)
