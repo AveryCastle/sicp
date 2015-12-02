@@ -124,9 +124,6 @@
   (average guess (/ x guess)))
 
 
-
-
-
 (defn sqrt-iter [guess x]
   (if (good-enough? guess x)
     guess
@@ -176,3 +173,28 @@
 (good-enough? 299999.99999999 90000000000) ;; true
 (good-enough? 0.01 0.00000000001) ;;true
 (good-enough? 1 0.99) ;; false
+
+
+;; 연습문제 1.8
+(defn cube[x] (* x x x))
+
+(defn cube-average [x y]
+  (/ (+ x y) 3))
+
+(defn cube-good-enough? [guess x]
+  (< (abs (- (cube guess) x)) 0.0001))
+
+(defn cube-improve [guess x]
+  (float (cube-average (/ x (square guess)) (* 2 guess))))
+
+(defn cube-iter [guess x]
+  (if (cube-good-enough? guess x)
+    guess
+    (cube-iter (cube-improve guess x)
+               x)))
+
+(cube-iter 10 1000)
+(cube-iter 7 (* 7 7 7))
+(cube-iter 5 125)
+(cube-iter 4 65)
+
