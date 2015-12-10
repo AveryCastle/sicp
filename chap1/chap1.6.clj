@@ -198,3 +198,44 @@
 (cube-iter 5 125)
 (cube-iter 4 65)
 
+
+;; p38
+;;(defn sqrt [x]
+;;  (sqrt-iter 1.0 x))
+;;
+;;(def sqrt-iter [guess x]
+;;  (if (good-enough? guess x)
+;;    guess
+;;    (sqrt-iter (improve guess x) x)))
+;;
+;;(defn good-enough? [guess x]
+;;  (< (abs (- (square gess) x)) 0.001))
+;;
+;;(defn improve [guess x]
+;;  (average guess (/ x guess)))
+;;
+;;;;;;;;;;;;
+;;
+;;(defn sqrt [x]
+;;  (defn (good-enough? guess x)
+;;    (< (abs (- (square gess) x)) 0.001))
+;;  (defn improve [guess x]
+;;    (average guess (/ x guess)))
+;;  (defn sqrt-iter [guess x]
+;;    (if (good-enough? guess x)
+;;      guess
+;;      (sqrt-iter (improve guess x) x)))
+;;  (sqrt-iter 1.0 x))
+;;
+;;;;;;;;;;;;;;;;;;;
+;;
+;;(defn sqrt [x]
+;;  (defn (good-enough? guess)
+;;    (< (abs (- (square gess) x)) 0.001))
+;;  (defn improve [guess]
+;;    (average guess (/ x guess)))
+;;  (defn sqrt-iter [guess]
+;;    (if (good-enough? guess x)
+;;      guess
+;;      (sqrt-iter (improve guess))))
+;;  (sqrt-iter 1.0 x))
