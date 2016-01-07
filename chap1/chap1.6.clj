@@ -239,3 +239,34 @@
 ;;      guess
 ;;      (sqrt-iter (improve guess))))
 ;;  (sqrt-iter 1.0 x))
+
+;;  p46, 연습문제 1.9
+;;(defn + [a b]
+;;  (if (= a 0)
+;;    b
+;;    (inc (+ (dec a) b))))
+
+;;(+ 4 5)
+
+;;(defn + [a b]
+;;  (if (= a 0)
+;;    b
+;;    (+ (dec a) (inc b))))
+
+
+;;(+ 4 5)
+
+
+;; p47, 연습문제 1.10
+(defn A [x y]
+  (cond (= y 0) 0
+        (= x 0) (* 2 y)
+        (= y 1) 2
+        :else (A (- x 1)
+                 (A x (- y 1)))))
+
+(A 1 10)
+(A 2 4)
+(A 3 3)
+
+
