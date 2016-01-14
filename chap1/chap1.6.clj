@@ -269,4 +269,45 @@
 (A 2 4)
 (A 3 3)
 
+;; p48
+(defn fib [n]
+  (cond (= n 0) 0
+        (= n 1) 1
+        :else (+ (fib (- n 1)) (fib (- n 2)))))
 
+(fib 6)
+
+
+;; p50
+
+(defn fib-iter [a b count]
+  (if (= count 0)
+    b
+    (fib-iter (+ a b) a (- count 1))))
+
+(defn fibonachi [n]
+  (fib-iter 1 0 n))
+
+(fibonachi 7)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; p54
+;; recursive process
+(defn func-rec [n]
+  (if (< n 3) n
+    (+ (func-rec (- n 1)) (* 2 (func-rec (- n 2))) (* 3 (func-rec (- n 3))))))
+
+(func-rec 8)
+
+
+;; iterative process
+(defn func-iter [a b c count]
+  (cond (= count 0) c
+        (= count 1) b
+        (= count 2) a
+        :else (func-iter (+ a (* 2 b) (* 3 c)) a b (- count 1))))
+
+(defn func [n]
+  (func-iter 2 1 0 n))
+
+(func 8)
