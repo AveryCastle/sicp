@@ -1,37 +1,39 @@
+(ns sicp-practice.core
+  (:gen-class))
+
+
+(defn -main
+  "I don't do a whole lot ... yet."
+  [& args]
+  (println "Hello, World!"))
+
+
 (defn square[x] (* x x))
 
 (square 3)
 
-(defn sum-of-squares[x y] (+ (square x) (square y)))
+(defn sum-of-squares [x y] (+ (square x) (square y)))
 
 (sum-of-squares 3 5)
 
-(defn f[a] (sum-of-squares (+ a 1) (* a 2)))
+(defn f [a] (sum-of-squares (+ a 1) (* a 2)))
 
 (f 5)
 
-(defn abs[n]
-  (cond
-    (< n 0) (* -1 n)
-    (> n 0) n
-    :else 0
-  )
-)
+(defn abs [n]
+  (cond (< n 0) (* -1 n)
+        (> n 0) n
+        :else 0))
 
-(defn abs[n]
-  (cond
-    (< n 0) (* -1 n)
-    :else n
-  )
-)
+(defn abs [n]
+  (cond (< n 0) (* -1 n)
+        :else n))
 
-(defn abs[n]
-  (if (< n 0) (* -1 n) n)
-)
+(defn abs [n]
+  (if (< n 0) (* -1 n) n))
 
-(defn between_5_and_10[n]
-  (and (>= n 5) (<= n 10))
-)
+(defn between-5-and-10 [n]
+  (and (>= n 5) (<= n 10)))
 
 ;; 연습문제 1.1
 10
@@ -316,9 +318,48 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; p54 연습문제 1.12
-(defn fn_tri [x y]
-  (if (or (= x 0) (= x y)) 1
-    (+ (fn_tri (- x 1) (- y 1)) (fn_tri x (- y 1)))))
+(defn fn-tri [x y]
+  (if (or (= x 0) (= x y))
+    1
+    (+ (fn-tri (- x 1) (- y 1))
+       (fn-tri x (- y 1)))))
 
-(fn_tri 3 6)
+(fn-tri 3 6)
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; p54 연습문제 1.13
+(def phi (/ (+ 1 (Math/sqrt 5)) 2))
+(def psi (/ (- 1 (Math/sqrt 5)) 2))
+
+(defn expt [x count]
+  (if (= count 0)
+    1
+    (* x (expt x (- count 1)))))
+
+(= 27
+   (expt 3 3))
+(= 1
+   (expt 3 0))
+
+(defn example13 [n]
+  (/ (- (expt phi n)
+        (expt psi n))
+     (Math/sqrt 5)))
+
+(= (fibonachi 3)
+   (int (example13 3)))
+(= (fibonachi 4)
+   (int (example13 4)))
+(= (fibonachi 10)
+   (int (example13 10)))
+
+;; lambda expression
+(every? (fn [x]
+          (= (fibonachi x)
+             (int (example13 x))))
+        (range 1 40))
+
+(every? #(= (fibonachi %)
+            (int (example13 %)))
+        (range 1 40))
