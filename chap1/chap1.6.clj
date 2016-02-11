@@ -369,3 +369,24 @@
 ;; 시간 복잡도: (n), (n^2)
 ;; 공간 복잡도: (n)
 ;;           왜냐하면 else에서 (+ (cc a b) (cc c d)) 식으로 2개씩 뻗어나가기 때문에.
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; p56 연습문제 1.15
+(defn cube [x]
+  (* x x x))
+
+(defn p [x]
+  ;; TODO: print로 출력하지 않고, count하여 구할 수 있도록 해야 함.
+  (print "12;" )
+  (- (* 3 x) (* 4 (cube x))))
+
+(defn sine [angle]
+  (if-not (> (Math/abs angle) 0.1)
+    angle
+    (p (sine (/ angle 3.0)))))
+
+(sine 12.15)
+
+;; a. 5
+;; b. O(logN)
