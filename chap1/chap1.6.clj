@@ -390,3 +390,32 @@
 
 ;; a. 5
 ;; b. O(logN)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; p59 연습문제 1.16
+;; recursive process
+(defn even? [n]
+  (= (rem n 2) 0))
+
+(defn fast-expt [b n]
+  (cond (= n 0) 1
+        (= (even? n) 0) (square (fast-expt b (/ n 2)))
+        :else (* b (fast-expt b (- n 1)))))
+
+(fast-expt 2 3)
+(fast-expt 3 10)
+(fast-expt 3 11)
+
+
+;; iterative process
+(defn expt-iter [a b n]
+  (cond (= n 0) a
+        (= (even? n) 0) (expt-iter a (square b) (/ n 2))
+        :else (expt-iter (* a b) b (- n 1))))
+
+(defn fast-iter-expt [b n]
+  (expt-iter 1 b n))
+
+(fast-iter-expt 2 3)
+(fast-iter-expt 3 10)
+(fast-iter-expt 3 11)
